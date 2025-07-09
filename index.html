@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏁 Racing Game 🏁</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen">
+            <div class="start-content">
+                <h1>🏁 RACING GAME 🏁</h1>
+                <div class="car-display">🏎️</div>
+                <p class="subtitle">Get ready to race!</p>
+                
+                <div class="game-modes">
+                    <h3>Choose Your Challenge</h3>
+                    <div class="mode-buttons">
+                        <button class="btn mode-btn" data-mode="easy">
+                            🟢 Easy<br>
+                            <small>Slow traffic, more time</small>
+                        </button>
+                        <button class="btn mode-btn" data-mode="normal">
+                            🟡 Normal<br>
+                            <small>Standard racing</small>
+                        </button>
+                        <button class="btn mode-btn" data-mode="hard">
+                            🔴 Hard<br>
+                            <small>Fast traffic, quick reflexes</small>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="controls-info">
+                    <h3>Controls</h3>
+                    <div class="control-item">
+                        <span class="key">←→</span> or <span class="key">A D</span> - Steer left/right
+                    </div>
+                    <div class="control-item">
+                        <span class="key">↑↓</span> or <span class="key">W S</span> - Speed up/slow down
+                    </div>
+                    <div class="control-item">
+                        <span class="key">SPACE</span> - Brake
+                    </div>
+                </div>
+                
+                <button id="start-game" class="btn btn-primary">START RACING!</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen hidden">
+            <!-- Game HUD -->
+            <div class="hud">
+                <div class="hud-left">
+                    <div class="score">Score: <span id="score">0</span></div>
+                    <div class="distance">Distance: <span id="distance">0</span>m</div>
+                </div>
+                <div class="hud-center">
+                    <div class="speed">Speed: <span id="speed">0</span> km/h</div>
+                </div>
+                <div class="hud-right">
+                    <div class="lives">Lives: <span id="lives">3</span></div>
+                    <div class="level">Level: <span id="level">1</span></div>
+                </div>
+            </div>
+
+            <!-- Game Canvas -->
+            <canvas id="game-canvas" width="800" height="600"></canvas>
+
+            <!-- Mobile Controls -->
+            <div class="mobile-controls">
+                <div class="control-row">
+                    <button class="control-btn" id="up-btn">↑</button>
+                </div>
+                <div class="control-row">
+                    <button class="control-btn" id="left-btn">←</button>
+                    <button class="control-btn" id="brake-btn">⬛</button>
+                    <button class="control-btn" id="right-btn">→</button>
+                </div>
+                <div class="control-row">
+                    <button class="control-btn" id="down-btn">↓</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over-screen" class="screen hidden">
+            <div class="game-over-content">
+                <h1>🏁 RACE FINISHED 🏁</h1>
+                <div class="final-stats">
+                    <div class="stat">
+                        <span class="stat-label">Final Score:</span>
+                        <span class="stat-value" id="final-score">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Distance Traveled:</span>
+                        <span class="stat-value" id="final-distance">0m</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Max Speed:</span>
+                        <span class="stat-value" id="max-speed">0 km/h</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Level Reached:</span>
+                        <span class="stat-value" id="final-level">1</span>
+                    </div>
+                </div>
+                
+                <div class="performance-rating">
+                    <div id="rating-text">Great Job!</div>
+                    <div id="rating-emoji">🏆</div>
+                </div>
+                
+                <div class="game-over-buttons">
+                    <button id="play-again" class="btn btn-primary">RACE AGAIN</button>
+                    <button id="back-to-menu" class="btn btn-secondary">MAIN MENU</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pause Overlay -->
+        <div id="pause-overlay" class="overlay hidden">
+            <div class="pause-content">
+                <h2>⏸️ PAUSED</h2>
+                <p>Press ESC or click to resume</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

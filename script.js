@@ -1,6 +1,7 @@
 class RacingGame {
-  constructor() {
-    this.canvas = null;
+    constructor() {
+        console.log('Racing game initialized!');
+        this.canvas = null;
     this.ctx = null;
     this.gameState = "menu"; // menu, playing, paused, gameOver
     this.gameMode = "normal";
@@ -62,18 +63,25 @@ class RacingGame {
     this.setupEventListeners();
     this.setupRoadLines();
     this.showStartScreen();
+    // Set default game mode
+    this.selectGameMode('normal');
   }
 
   setupCanvas() {
     this.canvas = document.getElementById("game-canvas");
-    this.ctx = this.canvas.getContext("2d");
-
-    // Set canvas size
-    this.resizeCanvas();
-    window.addEventListener("resize", () => this.resizeCanvas());
+    if (this.canvas) {
+      this.ctx = this.canvas.getContext("2d");
+      // Set canvas size
+      this.resizeCanvas();
+      window.addEventListener("resize", () => this.resizeCanvas());
+    } else {
+      console.error('Canvas element not found!');
+    }
   }
 
   resizeCanvas() {
+    if (!this.canvas) return;
+    
     const container = this.canvas.parentElement;
     const maxWidth = Math.min(800, window.innerWidth - 40);
     const maxHeight = Math.min(600, window.innerHeight - 200);
@@ -185,11 +193,15 @@ class RacingGame {
   }
 
   selectGameMode(mode) {
+    console.log('Game mode selected:', mode);
     this.gameMode = mode;
     document
       .querySelectorAll(".mode-btn")
       .forEach((btn) => btn.classList.remove("selected"));
-    document.querySelector(`[data-mode="${mode}"]`).classList.add("selected");
+    const selectedBtn = document.querySelector(`[data-mode="${mode}"]`);
+    if (selectedBtn) {
+      selectedBtn.classList.add("selected");
+    }
   }
 
   showStartScreen() {
@@ -201,6 +213,7 @@ class RacingGame {
   }
 
   startGame() {
+    console.log('Start game clicked!');
     this.gameState = "playing";
     this.resetGame();
 
